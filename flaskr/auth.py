@@ -70,8 +70,9 @@ def load_logged_in_user():
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
 
-@bp.route('/logout')
+@bp.route('/logout',methods=['GET','POST'])
 def logout():
+    # g.pop('user',None)
     session.clear()
     return redirect(url_for('index'))
 
