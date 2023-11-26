@@ -8,5 +8,14 @@ setup(
     author="weixinrui",
     author_email="weixinruiyuanban@gmail.com",
     packages = find_packages(),
-    install_requires = ["flask"]
+    install_requires = ["flask"],
+    package_data={
+        "flaskr":[
+            "schema.sql",
+            "templates/*/*",
+            "templates/*.html",
+            "static/*"
+        ]
+    },
+    include_package_data=True
 )
