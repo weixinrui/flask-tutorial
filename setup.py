@@ -8,7 +8,7 @@ setup(
     author="weixinrui",
     author_email="weixinruiyuanban@gmail.com",
     packages = find_packages(),
-    install_requires = ["flask"],
+    install_requires = ["flask","flask-sqlalchemy"],
     package_data={
         "flaskr":[
             "schema.sql",
