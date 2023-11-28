@@ -1,6 +1,4 @@
 from datetime import datetime
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flaskr.db import get_db
 
 db = get_db()
