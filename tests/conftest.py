@@ -4,6 +4,8 @@ import tempfile
 import pytest
 from flaskr import create_app
 from flaskr.db import get_db, init_db
+from sqlalchemy import text
+from data import users, posts
 
 with open(os.path.join(os.path.dirname(__file__),'data.sql'), 'r',encoding='utf-8') as f:
     _data_sql = f.read()
@@ -11,15 +13,26 @@ with open(os.path.join(os.path.dirname(__file__),'data.sql'), 'r',encoding='utf-
 @pytest.fixture
 def app():
     db_fd, db_path = tempfile.mkstemp()
-    
     app = create_app({
         'TESTING': True,
         'DATABASE': db_path
     })
 
     with app.app_context():
-        init_db()
-        get_db().executescript(_data_sql)
+        init_db(app)
+        for user in users:
+            try:
+                get_db().session.add(user)
+                get_db().session.commit()
+            except:
+                pass
+        for post in posts:
+            try:
+                get_db().session.add(post)
+                get_db().session.commit()
+            except:
+                pass
+        
 
     yield app
     os.close(db_fd)
