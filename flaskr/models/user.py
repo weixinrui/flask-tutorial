@@ -1,4 +1,4 @@
-from flaskr.db import get_db
+from ..db import get_db
 
 db = get_db()
 class User(db.Model):

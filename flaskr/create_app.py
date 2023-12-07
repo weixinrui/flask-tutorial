@@ -31,19 +31,23 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
-    from flaskr.routes.auth import auth
+    from .routes.auth import auth
     app.register_blueprint(auth.bp)
 
-    from flaskr.routes.blog import blog
+    from .routes.blog import blog
     app.register_blueprint(blog.bp)
     app.add_url_rule('/',endpoint='index')
+
+    current_dir = os.path.split(os.path.realpath(__file__))[0]
+    app.template_folder = os.path.join(current_dir,'resource','templates')
+    app.static_folder = os.path.join(current_dir,'resource','static')
 
     return app
 
 def init_log():
     from flask.logging import default_handler
-    from .common.log.log_formatter import request_formatter
-    from .common.log.logger import RunLogger
+    from common.log.log_formatter import request_formatter
+    from common.log.logger import RunLogger
     log_service = RunLogger(level=logging.DEBUG,
                             formatter=request_formatter,
                             filename="flaskr.log")
