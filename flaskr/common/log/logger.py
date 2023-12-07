@@ -1,5 +1,6 @@
 import os
 import threading
+import logging
 from logging import FileHandler, StreamHandler
 
 def get_filepath(filename):
