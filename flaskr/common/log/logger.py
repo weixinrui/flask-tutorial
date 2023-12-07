@@ -39,7 +39,7 @@ class RunLogger:
         return handle
 
     def get_stream_handle(self):
-        handle = StreamHandler(filename=self.filepath,encoding='utf-8')
+        handle = StreamHandler()
         handle.setFormatter(self.log_formatter)
         return handle
     

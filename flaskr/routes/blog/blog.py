@@ -4,11 +4,11 @@ from flask import (
 
 from werkzeug.exceptions import abort
 
-from flaskr.auth import login_required
-from flaskr.db import get_db
+from ..auth.auth import login_required
+from ...db import get_db
 
-from .models import User
-from .models import Post
+from ...models.user import User
+from ...models.post import Post
 
 bp = Blueprint('blog',__name__)
 
